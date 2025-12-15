@@ -71,7 +71,7 @@ Ikuti langkah-langkah ini untuk menjalankan project di komputer lokal (Localhost
 1. **Clone Repository**
    ```bash
    git clone [https://github.com/kenziecarlen13/PWL-projectENotes.git](https://github.com/kenziecarlen13/PWL-projectENotes.git)
-   cd PWL-projectENotes/enotes
+   cd PWL-projectENotes\enotes
    ```
 
 2.  **Install Dependencies**
