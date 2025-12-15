@@ -23,7 +23,7 @@ Aplikasi ini mencakup seluruh poin penilaian (a-h) dalam ketentuan UAS:
 * **CRUD Lengkap:** Create, Read, Update, Delete data catatan.
 * **Upload Gambar:** Setiap catatan mendukung upload gambar (disimpan di `storage`).
 * **Search Engine:** Fitur pencarian catatan berdasarkan judul (Real-time backend).
-* **Bulk Delete:** Fitur "Hapus Semua" dengan konfirmasi keamanan.
+* **Bulk Delete:** Fitur "Hapus Semua" dengan konfirmasi keamanan (Modal).
 * **UI Modern:** Tampilan Grid Card dengan Hero Image pada detail catatan.
 
 ### 2. Manajemen User (Master Data User)
@@ -45,11 +45,15 @@ Aplikasi ini mencakup seluruh poin penilaian (a-h) dalam ketentuan UAS:
 
 ## 📸 Screenshots
 
-*(Silakan upload screenshot aplikasi ke folder `public/img` atau root folder, lalu sesuaikan link di bawah ini)*
+Berikut adalah bukti penggunaan versi Laravel dan tampilan aplikasi:
 
-| Version Proof | Dasboard (contoh) |
-|:---:|:---:|
-| <img src="E:\kultivasi_4_tahun\Semester_5\PWL\PWL-projectENotes\img\version.png" alt="Version Proof" width="100%"> | <img src="E:\kultivasi_4_tahun\Semester_5\PWL\PWL-projectENotes\img\tampilan.png" alt="tampilan" width="100%"> |
+### 1. Bukti Versi Framework
+<img src="img/version.png" alt="Version Proof" width="100%">
+
+<br>
+
+### 2. Tampilan Dashboard
+<img src="img/tampilan.png" alt="Tampilan Dashboard" width="100%">
 
 ---
 
@@ -64,11 +68,11 @@ Ikuti langkah-langkah ini untuk menjalankan project di komputer lokal (Localhost
 
 ### Langkah-langkah
 
-1.  **Clone Repository**
-    ```bash
-    git clone [https://github.com/kenziecarlen13/PWL-projectENotes.git](https://github.com/kenziecarlen13/PWL-projectENotes.git)
-    cd PWL-projectENotes
-    ```
+1. **Clone Repository**
+   ```bash
+   git clone [https://github.com/kenziecarlen13/PWL-projectENotes.git](https://github.com/kenziecarlen13/PWL-projectENotes.git)
+   cd PWL-projectENotes
+   ```
 
 2.  **Install Dependencies**
     ```bash
