@@ -49,7 +49,7 @@
                                         <span class="font-weight-bold">{{ $user->name }}</span>
                                         
                                         @if($user->id == Auth::id())
-                                            <span class="badge badge-success ml-2">Saya</span>
+                                            <span class="badge badge-success ml-2">Active</span>
                                         @endif
                                     </div>
                                 </td>
@@ -78,6 +78,7 @@
 </div>
 
 {{-- SCRIPT KHUSUS DATATABLES (SESUAI MODUL 11) --}}
+{{-- Kita inject script ini ke stack script atau langsung di sini --}}
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>

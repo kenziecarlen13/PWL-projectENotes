@@ -24,13 +24,13 @@ class ChangePasswordController extends Controller
             'new_password' => 'required|min:8|confirmed', // 'confirmed' otomatis cek field new_password_confirmation
         ]);
 
-        // B. Cek apakah Password Lama Benar?
+        // B. Cek Password Lama Benar
         if (!Hash::check($request->current_password, Auth::user()->password)) {
             // Jika salah, kembalikan dengan error
             return back()->withErrors(['current_password' => 'Password lama tidak cocok!']);
         }
 
-        // C. Jika benar, Update Password Baru
+        // C. Update Password Baru
         User::find(Auth::id())->update([
             'password' => Hash::make($request->new_password)
         ]);

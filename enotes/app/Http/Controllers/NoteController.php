@@ -5,21 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Note;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage; 
+use Illuminate\Support\Facades\Storage;
 
 class NoteController extends Controller
 {
-    // READ (Menampilkan Data)
+    // 1. MENAMPILKAN DATA (User vs Tamu)
     public function index(Request $request)
     {
         $keyword = $request->input('search');
 
+        // LOGIKA PEMISAH DATA
         if (Auth::check()) {
-            $query = Auth::user()->notes();
+            // Jika Member: Ambil berdasarkan user_id
+            $query = Note::where('user_id', Auth::id());
         } else {
+            // Jika Tamu: Ambil berdasarkan session_token browser ini
             $query = Note::where('session_token', session()->getId());
         }
 
+        // LOGIKA SEARCH
         if ($keyword) {
             $query->where(function ($q) use ($keyword) {
                 $q->where('title', 'like', "%{$keyword}%")
@@ -27,21 +31,22 @@ class NoteController extends Controller
             });
         }
 
-        $notes = $query->orderBy('updated_at', 'desc')->get();
+        // Urutkan dari yang terbaru
+        $notes = $query->orderBy('created_at', 'desc')->get();
 
         return view('notes.index', [
-            'key' => 'notes',
             'ds' => $notes,
             'keyword' => $keyword
         ]);
     }
 
+    // 2. FORM CREATE (Bisa diakses Tamu)
     public function create()
     {
         return view('notes.create');
     }
 
-    // CREATE (Simpan Data + Gambar)
+    // 3. SIMPAN DATA (User vs Tamu)
     public function store(Request $request)
     {
         $request->validate([
@@ -50,45 +55,55 @@ class NoteController extends Controller
             'file' => 'image|file|max:2048', 
         ]);
 
-        // LOGIKA UPLOAD GAMBAR
+        // Upload Gambar
         $imagePath = null;
         if ($request->file('file')) {
             $fileName = time() . '-' . $request->file('file')->getClientOriginalName();
+            // Simpan ke 'storage/app/public/foto'
             $imagePath = $request->file('file')->storeAs('foto', $fileName, 'public');
         }
 
+        // Siapkan Data Dasar
         $data = [
             'title' => $request->title,
             'content' => $request->content,
             'image' => $imagePath,
         ];
 
+        // Tentukan Pemilik Data
         if (Auth::check()) {
+            // JIKA MEMBER
             $data['author'] = Auth::user()->name;
-            $request->user()->notes()->create($data);
+            $data['user_id'] = Auth::id();
+            $data['session_token'] = null; // Member tidak butuh session token
         } else {
+            // JIKA TAMU
             $data['author'] = 'Guest User';
             $data['user_id'] = null;
-            $data['session_token'] = session()->getId();
-            Note::create($data);
+            $data['session_token'] = session()->getId(); // KUNCI: Simpan ID Session Browser
         }
 
-        return redirect("/notes")->with('alert', 'Data Berhasil Di Tambahkan');
+        // Simpan ke Database
+        Note::create($data);
+
+        return redirect("/notes")->with('alert', 'Catatan Berhasil Disimpan!');
     }
 
+    // 4. SHOW DETAIL (Tamu boleh lihat punya sendiri)
     public function show(Note $note)
     {
         $this->authorizeAccess($note);
         return view('notes.show', compact('note'));
     }
 
+    // 5. EDIT FORM (Hanya Member - Sesuai Route)
     public function edit(Note $note)
     {
-        $this->authorizeAccess($note);
+        $this->authorizeAccess($note); // Proteksi extra
         return view('notes.edit', compact('note'));
     }
 
-    // UPDATE (Edit Data + Ganti Gambar)
+    // 6. UPDATE (Hanya Member)
     public function update(Request $request, Note $note)
     {
         $this->authorizeAccess($note);
@@ -104,57 +119,69 @@ class NoteController extends Controller
             'content' => $request->content,
         ];
 
-        // Cek jika ada upload gambar baru
+        // Ganti Gambar
         if ($request->file('file')) {
-            // Hapus gambar lama jika ada
             if ($note->image) {
                 Storage::disk('public')->delete($note->image);
             }
-
-            // Simpan gambar baru
             $fileName = time() . '-' . $request->file('file')->getClientOriginalName();
             $data['image'] = $request->file('file')->storeAs('foto', $fileName, 'public');
         }
 
         $note->update($data);
 
-        return redirect("/notes")->with('alert', 'Data Berhasil Di Ubah');
+        return redirect("/notes")->with('alert', 'Catatan Berhasil Diubah!');
     }
 
-    // DELETE (Hapus Data + Gambar)
+    // 7. DELETE (Hanya Member)
     public function destroy(Note $note)
     {
         $this->authorizeAccess($note);
 
-        // Hapus gambar fisik
         if ($note->image) {
             Storage::disk('public')->delete($note->image);
         }
 
         $note->delete();
 
-        return redirect("/notes")->with('alert', 'Data Berhasil Di Hapus');
+        return redirect("/notes")->with('alert', 'Catatan Berhasil Dihapus!');
     }
 
+    // 8. HAPUS SEMUA (User hapus miliknya, Tamu hapus sesi dia)
     public function clearAll()
     {
         if (Auth::check()) {
-            Auth::user()->notes()->delete();
+            // Hapus milik User
+            $notes = Note::where('user_id', Auth::id())->get();
         } else {
-            Note::where('session_token', session()->getId())->delete();
+            // Hapus milik Tamu (Session ini)
+            // *Opsi Tambahan: Jika tamu boleh hapus semua catatannya sendiri
+            $notes = Note::where('session_token', session()->getId())->get();
         }
-        return redirect("/notes")->with('alert', 'Semua Data Berhasil Di Hapus');
+
+        // Hapus gambar fisiknya dulu (Looping)
+        foreach ($notes as $note) {
+            if ($note->image) {
+                Storage::disk('public')->delete($note->image);
+            }
+            $note->delete();
+        }
+
+        return redirect("/notes")->with('alert', 'Semua Catatan Berhasil Dihapus!');
     }
 
+    // FUNGSI KEAMANAN: Cek Kepemilikan Data
     private function authorizeAccess($note)
     {
         if (Auth::check()) {
+            // Member tidak boleh akses data Member lain ATAU data Tamu
             if ($note->user_id !== Auth::id()) {
-                abort(403, 'Akses Ditolak');
+                abort(403, 'Akses Ditolak: Ini bukan catatan Anda.');
             }
         } else {
+            // Tamu tidak boleh akses data Member ATAU data Tamu lain
             if ($note->session_token !== session()->getId()) {
-                abort(403, 'Akses Ditolak');
+                abort(403, 'Akses Ditolak: Sesi Anda berbeda.');
             }
         }
     }

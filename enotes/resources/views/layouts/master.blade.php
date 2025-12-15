@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 
     <style>
-
+        /* =========================================
+           1. GLOBAL DARK THEME
+           ========================================= */
         body { 
             background-color: #121212 !important; 
             color: #e0e0e0; 
@@ -62,6 +64,10 @@
         }
         .form-control::placeholder { color: #aaa; }
         
+        /* =========================================
+           2. MODERN UI (SEARCH & BUTTONS)
+           ========================================= */
+
         /* Search Bar Glow */
         .input-search-premium {
             background-color: #2b2b2b !important;
@@ -101,6 +107,9 @@
         .btn-gradient-warning { background: linear-gradient(135deg, #ffc107, #ffe082); color: #212529 !important; }
         .btn-gradient-secondary { background: linear-gradient(135deg, #6c757d, #aab7c4); color: white !important; }
 
+        /* =========================================
+           3. FLOATING WIDGET
+           ========================================= */
         .account-overlay {
             position: fixed; bottom: 30px; right: 30px;
             background: rgba(30, 30, 30, 0.95); backdrop-filter: blur(10px);

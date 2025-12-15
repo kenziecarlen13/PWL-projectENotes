@@ -52,6 +52,7 @@
                                   style="background-color: #2b2b2b; color: #fff; border: 1px solid #444;">{{ old('content', $note->content) }}</textarea>
                     </div>
 
+                    {{-- Tombol Aksi Modern --}}
                     <div class="d-flex justify-content-between mt-4">
                         <a href="{{ route('notes.index') }}" class="btn btn-premium btn-gradient-secondary px-4">
                             <i class="fas fa-times mr-2"></i>Batal

@@ -72,12 +72,15 @@
                     Terakhir diubah: {{ $note->updated_at->diffForHumans() }}
                 </small>
                 
-                <div>
-                    {{-- Tombol Edit --}}
-                    <a href="{{ route('notes.edit', $note->id) }}" class="btn btn-warning rounded-pill px-4 font-weight-bold shadow-sm hover-lift">
-                        <i class="fas fa-edit mr-2"></i> Edit Catatan
-                    </a>
-                </div>
+                {{-- [PERUBAHAN] Tombol Edit HANYA muncul jika LOGIN --}}
+                @auth
+                    <div>
+                        {{-- Tombol Edit --}}
+                        <a href="{{ route('notes.edit', $note->id) }}" class="btn btn-warning rounded-pill px-4 font-weight-bold shadow-sm hover-lift">
+                            <i class="fas fa-edit mr-2"></i> Edit Catatan
+                        </a>
+                    </div>
+                @endauth
             </div>
 
         </div>

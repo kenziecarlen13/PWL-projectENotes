@@ -12,24 +12,18 @@ class CreateNotesTable extends Migration
      *
      * @return void
      */
-    public function up()
+public function up()
     {
         Schema::create('notes', function (Blueprint $table) {
-            // Primary Key
             $table->bigIncrements('id');
-
-            // Foreign Key untuk User (Relasi ke tabel users)
-            // Awalnya wajib diisi (untuk member), nanti diubah jadi nullable oleh migrasi Guest Mode.
-            $table->unsignedBigInteger('user_id');
-
-            // Data Inti Catatan
-            $table->string('title'); // Judul
-            $table->text('content'); // Isi (Tipe Text agar muat banyak)
-
-            // Metadata Tambahan
-            $table->string('author')->nullable(); // Nama penulis (snapshot saat dibuat)
+            $table->string('title');
+            $table->text('content');
+            $table->string('image')->nullable();
+            $table->string('author');
             
-            // Audit Log (created_at & updated_at)
+            $table->unsignedBigInteger('user_id')->nullable(); // Untuk Member
+            $table->string('session_token')->nullable();       // Untuk Tamu
+            
             $table->timestamps();
         });
     }
