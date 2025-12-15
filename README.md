@@ -47,13 +47,9 @@ Aplikasi ini mencakup seluruh poin penilaian (a-h) dalam ketentuan UAS:
 
 *(Silakan upload screenshot aplikasi ke folder `public/img` atau root folder, lalu sesuaikan link di bawah ini)*
 
-| Dashboard (Dark Mode) | Detail Catatan |
+| Version Proof | Dasboard (contoh) |
 |:---:|:---:|
-| <img src="https://via.placeholder.com/600x300?text=Dashboard+View" alt="Dashboard" width="100%"> | <img src="https://via.placeholder.com/600x300?text=Detail+View" alt="Detail" width="100%"> |
-
-| Form Edit & Upload | Master Data User |
-|:---:|:---:|
-| <img src="https://via.placeholder.com/600x300?text=Edit+Form" alt="Edit" width="100%"> | <img src="https://via.placeholder.com/600x300?text=User+Table" alt="Users" width="100%"> |
+| <img src="E:\kultivasi_4_tahun\Semester_5\PWL\PWL-projectENotes\img\version.png" alt="Version Proof" width="100%"> | <img src="E:\kultivasi_4_tahun\Semester_5\PWL\PWL-projectENotes\img\tampilan.png" alt="tampilan" width="100%"> |
 
 ---
 
