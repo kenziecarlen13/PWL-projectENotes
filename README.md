@@ -1,78 +1,132 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# 📝 E-Notes App (UAS PWL)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+> **Project Ujian Akhir Semester (UAS) - Pemrograman Web Lanjut**
+> Aplikasi manajemen catatan berbasis web dengan framework **Laravel 6**, tampilan **Modern Dark Mode**, fitur upload gambar, dan manajemen pengguna yang lengkap.
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-6.x-red?style=flat-square&logo=laravel)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-4-purple?style=flat-square&logo=bootstrap)
+![Status](https://img.shields.io/badge/Status-Operational-success?style=flat-square)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📖 Deskripsi
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**E-Notes** adalah aplikasi pencatat digital yang dirancang untuk memenuhi studi kasus UAS. Aplikasi ini memungkinkan pengguna untuk membuat catatan pribadi yang dilengkapi dengan gambar, mengelola profil, serta fitur administrasi untuk mengelola data pengguna lain. Dibangun dengan antarmuka **Dark Mode Premium** yang responsif dan interaktif.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Repository: [https://github.com/kenziecarlen13/PWL-projectENotes](https://github.com/kenziecarlen13/PWL-projectENotes)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ✨ Fitur Unggulan (Sesuai Ketentuan UAS)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Aplikasi ini mencakup seluruh poin penilaian (a-h) dalam ketentuan UAS:
 
-## Laravel Sponsors
+### 1. Manajemen Catatan (Master Data Utama)
+* **CRUD Lengkap:** Create, Read, Update, Delete data catatan.
+* **Upload Gambar:** Setiap catatan mendukung upload gambar (disimpan di `storage`).
+* **Search Engine:** Fitur pencarian catatan berdasarkan judul (Real-time backend).
+* **Bulk Delete:** Fitur "Hapus Semua" dengan konfirmasi keamanan.
+* **UI Modern:** Tampilan Grid Card dengan Hero Image pada detail catatan.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### 2. Manajemen User (Master Data User)
+* **DataTables:** Menampilkan daftar pengguna terdaftar dengan fitur Search & Pagination otomatis.
+* **User Deletion:** Admin dapat menghapus user lain (dengan proteksi tidak bisa menghapus diri sendiri saat login).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+### 3. Keamanan & Autentikasi
+* **Auth System:** Login, Register, dan Logout.
+* **Change Password:** Fitur ubah password dengan validasi **Password Lama** (Wajib UAS Poin 2f & 3d).
+* **Delete Account:** User dapat menghapus akun sendiri secara permanen.
+* **Middleware:** Pembatasan hak akses halaman (Route Protection).
 
-## Contributing
+### 4. UI/UX Premium
+* **Dark Mode:** Tema gelap dengan aksen Neon/Glow.
+* **Interactive Elements:** Tombol gradient, animasi hover, search bar kapsul, dan Modal Bootstrap custom.
+* **Responsive:** Tampilan rapi di Desktop dan Mobile.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 📸 Screenshots
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+*(Silakan upload screenshot aplikasi ke folder `public/img` atau root folder, lalu sesuaikan link di bawah ini)*
 
-## Security Vulnerabilities
+| Dashboard (Dark Mode) | Detail Catatan |
+|:---:|:---:|
+| <img src="https://via.placeholder.com/600x300?text=Dashboard+View" alt="Dashboard" width="100%"> | <img src="https://via.placeholder.com/600x300?text=Detail+View" alt="Detail" width="100%"> |
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+| Form Edit & Upload | Master Data User |
+|:---:|:---:|
+| <img src="https://via.placeholder.com/600x300?text=Edit+Form" alt="Edit" width="100%"> | <img src="https://via.placeholder.com/600x300?text=User+Table" alt="Users" width="100%"> |
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🚀 Cara Instalasi (Installation Guide)
+
+Ikuti langkah-langkah ini untuk menjalankan project di komputer lokal (Localhost):
+
+### Prasyarat
+* PHP >= 7.2
+* Composer
+* Database (MySQL/MariaDB via XAMPP/Laragon)
+
+### Langkah-langkah
+
+1.  **Clone Repository**
+    ```bash
+    git clone [https://github.com/kenziecarlen13/PWL-projectENotes.git](https://github.com/kenziecarlen13/PWL-projectENotes.git)
+    cd PWL-projectENotes
+    ```
+
+2.  **Install Dependencies**
+    ```bash
+    composer install
+    ```
+
+3.  **Konfigurasi Environment (.env)**
+    * Duplikat file `.env.example` menjadi `.env`.
+    * Atur koneksi database:
+    ```env
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=enotes_db  <-- Ganti dengan nama database kamu
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
+
+4.  **Generate App Key**
+    ```bash
+    php artisan key:generate
+    ```
+
+5.  **Migrasi Database**
+    Pastikan XAMPP/MySQL sudah nyala, lalu jalankan:
+    ```bash
+    php artisan migrate
+    ```
+
+6.  **Link Storage (PENTING ⚠️)**
+    Agar gambar yang diupload muncul, jalankan perintah ini untuk membuat symlink:
+    ```bash
+    php artisan storage:link
+    ```
+
+7.  **Jalankan Server**
+    ```bash
+    php artisan serve
+    ```
+
+8.  **Akses Aplikasi**
+    Buka browser dan kunjungi: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+---
+
+## 🛠️ Troubleshooting
+
+**Masalah: Gambar tidak muncul setelah deploy/clone?**
+Jika gambar *broken* (rusak), kemungkinan symlink `storage` belum terhubung.
+1.  Hapus folder `public/storage` jika ada.
+2.  Jalankan `php artisan storage:link` lagi.
+3.  Atau akses route khusus perbaikan: `http://127.0.0.1:8000/link-storage`
+
+**Masalah: Tampilan CSS tidak berubah?**
+Lakukan clear cache view:
+```bash
+php artisan view:clear
